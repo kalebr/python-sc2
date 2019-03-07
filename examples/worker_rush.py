@@ -18,7 +18,7 @@ class WorkerRushBot(BotAI):
 
 
     async def on_step(self, iteration):
-        self.time = (self.state.game_loop/22.4) / 60
+        self.game_time = (self.state.game_loop/22.4) / 60
         self.actions = []
 
         if iteration == 0:
