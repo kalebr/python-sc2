@@ -21,7 +21,7 @@ def main():
     run_game(maps.get("Abyssal Reef LE"), [
         Bot(Race.Zerg, WorkerRushBot()),
         Computer(Race.Protoss, Difficulty.Medium)
-    ], realtime=True)
+    ], realtime=False)
 
 if __name__ == '__main__':
     main()
