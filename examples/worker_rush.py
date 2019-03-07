@@ -1,12 +1,24 @@
 from sc2 import run_game, maps, Race, Difficulty, BotAI
 from sc2.player import Bot, Computer
+import time
+
+start = time.time()
 
 class WorkerRushBot(BotAI):
     def __init__(self):
         super().__init__()
         self.actions = []
+        
+    def on_end(self, game_result):
+        print('--- on_end called ---')
+        print("Game Time: {}".format(self.game_time))
+
+        if game_result == Result.Victory:
+            np.save("train_data/{}.npy".format(str(int(time.time()))), np.array(self.train_data))
+
 
     async def on_step(self, iteration):
+        self.time = (self.state.game_loop/22.4) / 60
         self.actions = []
 
         if iteration == 0:
@@ -25,3 +37,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    print("Elapsed Time: {}".format( time.time() - start ))
