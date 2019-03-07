@@ -13,10 +13,6 @@ class WorkerRushBot(BotAI):
         print('--- on_end called ---')
         print("Game Time: {}".format(self.game_time))
 
-        if game_result == Result.Victory:
-            np.save("train_data/{}.npy".format(str(int(time.time()))), np.array(self.train_data))
-
-
     async def on_step(self, iteration):
         self.game_time = (self.state.game_loop/22.4) / 60
         self.actions = []
